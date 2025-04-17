@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './newsCard.css';
 import CategoryButtons from './categoryButtons';
+const API = import.meta.env.VITE_API_URL;
 
 function NewsArticle() {
   const [news, setNews] = useState([]);
@@ -9,7 +10,7 @@ function NewsArticle() {
 
   const fetchNews = async (selectedCategory) => {
     try {
-      const res = await axios.get(`http://localhost:8000/news?category=${selectedCategory}`);
+      const res = await axios.get(`${API}/news?category=${selectedCategory}`);
       setNews(res.data);
     } catch (err) {
       console.error('Error fetching news:', err);
